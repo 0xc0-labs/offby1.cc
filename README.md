@@ -77,7 +77,7 @@ details.
 
 Trunk-based: `main` is the trunk, every change is a short-lived
 `<type>/<slug>` branch and a squash-merged PR. CI (`.github/workflows/ci.yml`,
-steps in `0xc0-homelab/.github`) lints, type-checks and builds every PR, and
+steps in `0xc0-labs/.github`) lints, type-checks and builds every PR, and
 builds the image. Every push to `main` publishes
-`ghcr.io/0xc0-homelab/offby1.cc` as `sha-<7>` and `main`; the job summary
+`ghcr.io/0xc0-labs/offby1.cc` as `sha-<7>` and `main`; the job summary
 prints the `tag@digest` that gitops pins in `apps/offby1-cc/deployment.yaml`.

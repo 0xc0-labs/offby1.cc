@@ -1,6 +1,6 @@
 # Lint, type-check and build on every PR; build the image too, and on main
 # push it to GHCR (sha-<7> and main). Trunk-based: every commit on main is a
-# deployable image. The steps live in 0xc0-homelab/.github.
+# deployable image. The steps live in 0xc0-labs/.github.
 name: ci
 
 on:
@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   check:
-    uses: 0xc0-homelab/.github/.github/workflows/node-check.yml@main
+    uses: 0xc0-labs/.github/.github/workflows/node-check.yml@main
   image:
     needs: check
-    uses: 0xc0-homelab/.github/.github/workflows/container-image.yml@main
+    uses: 0xc0-labs/.github/.github/workflows/container-image.yml@main

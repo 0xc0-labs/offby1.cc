@@ -1,6 +1,6 @@
 # The offby1.cc landing page: Next.js standalone server on Node, as a
 # non-root user. The node version matches mise.toml; bump both together.
-# Built and pushed by 0xc0-homelab/.github container-image.yml.
+# Built and pushed by 0xc0-labs/.github container-image.yml.
 
 ARG NODE_IMAGE=node:24.21.0-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
 
