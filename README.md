@@ -2,7 +2,7 @@
 
 The landing page of offby1, at https://offby1.cc: a Next.js app built on the
 offby1 design system (claude.ai/artifact/KfETJAuPgCxKXv9s4sczkp), served by
-its own Node server in the homelab cluster.
+its own Node server in the cluster.
 
 ## Run it
 
@@ -25,7 +25,9 @@ src/
   app/en/             /en/, and the English ones
   app/api/contact/    the contact form's endpoint
   app/healthz/        the probes'
-  components/         the design system's components, ported 1:1 (TSX + CSS Modules)
+  instrumentation.ts  server traces and error logs (OpenTelemetry)
+  components/         the design system's components, ported 1:1 (TSX + CSS Modules),
+                      plus Rum/, the browser's RUM
   content/            the copy, one file per language, written separately
   styles/tokens.css   the design system's tokens, generated from its tokens.json
   proxy.ts            the per-request Content-Security-Policy
@@ -69,9 +71,21 @@ site's own on its route (framing, Permissions-Policy, COOP/CORP:
 ## Contact form
 
 `POST /api/contact/` checks the form again on the server (`src/lib/contact.ts`
-is shared with the browser) and answers 202. Delivery is not wired yet: the
-handler logs that a request arrived, without the message or the contact's
-details.
+is shared with the browser) and answers 202. There is no delivery (mail, CRM):
+the handler logs that a request arrived, without the message or the
+contact's details.
+
+## Observability
+
+Everything goes to OpenObserve. Server spans are exported over OTLP HTTP
+(`src/instrumentation.ts`, endpoint and service name from
+`OTEL_EXPORTER_OTLP_ENDPOINT` and `OTEL_SERVICE_NAME`), as children of
+Traefik's span for the request. Server errors are one JSON line each on
+stderr, with the digest the visitor sees. The browser sends RUM (page loads,
+Core Web Vitals, errors, resources, clicks) through this same origin
+(`components/Rum/Rum.tsx`), with no storage on the visitor's side and no
+session replay; it stays off without `OPENOBSERVE_RUM_CLIENT_TOKEN`, as in
+`next dev`.
 
 ## Delivery
 

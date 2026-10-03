@@ -7,8 +7,8 @@ const MAX_BODY = 16 * 1024;
 
 /**
  * The contact form's endpoint. It validates again what the browser checked
- * and answers 202. Delivery (mail, CRM) is not wired yet: until it is, the
- * request is logged without its message or contact details.
+ * and answers 202. There is no delivery (mail, CRM): the request is logged
+ * without its message or contact details.
  */
 export async function POST(request: Request) {
   if (!request.headers.get("content-type")?.startsWith("application/json")) {
