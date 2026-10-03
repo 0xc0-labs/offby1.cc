@@ -18,7 +18,6 @@ export interface ContactFormProps {
 
 type State = "idle" | "sending" | "sent" | "failed";
 
-/** The landing's contact form: checked in the browser, then again by POST /api/contact/. */
 export function ContactForm({ copy: t, lang, className }: ContactFormProps) {
   const [errors, setErrors] = useState<Partial<Record<ContactField, ContactError>>>({});
   const [state, setState] = useState<State>("idle");

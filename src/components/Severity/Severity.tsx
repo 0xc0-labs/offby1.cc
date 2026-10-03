@@ -22,7 +22,7 @@ export interface SeverityProps {
   children?: ReactNode;
 }
 
-/** Finding severity: a four-cell meter plus a label, never colour alone. */
+/** Never colour alone: the label always goes with the meter. */
 export function Severity({ level, lang = "es", compact, className, children }: SeverityProps) {
   const s = SEV[level];
   const label = children ?? s[lang];

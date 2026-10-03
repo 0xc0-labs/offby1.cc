@@ -7,7 +7,6 @@ import { SectionHeader } from "../SectionHeader/SectionHeader";
 import { Shell } from "./Shell";
 import styles from "./TextPage.module.css";
 
-/** A page of plain text: the legal pages and the disclosure policy. */
 export function TextPage({ content: c, page }: { content: Content; page: PageKey }) {
   const p = c.pages.list[page];
   return (

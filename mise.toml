@@ -1,5 +1,4 @@
-# Tooling for the offby1.cc landing page. CI installs exactly this
-# (0xc0-labs/.github node-check.yml).
+# CI installs exactly this (0xc0-labs/.github node-check.yml).
 [tools]
 node = "24.21.0"
 pnpm = "12.8.1"

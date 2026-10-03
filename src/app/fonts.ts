@@ -1,6 +1,5 @@
 import localFont from "next/font/local";
 
-// The design system's two families, latin and Latin-1 subsets, self-hosted.
 export const sans = localFont({
   src: "../fonts/InstrumentSans-Variable-latin.woff2",
   weight: "400 700",

@@ -28,7 +28,6 @@ export interface NavBarProps {
   className?: string;
 }
 
-/** Site header: logo, section links, language switch, primary CTA; collapses under 860px. */
 export function NavBar({ links, cta, theme, lang, langHrefs, sticky, homeHref = "/", className }: NavBarProps) {
   const [open, setOpen] = useState(false);
   const en = lang === "en";

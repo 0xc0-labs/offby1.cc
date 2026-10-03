@@ -12,7 +12,6 @@ import styles from "./Landing.module.css";
 
 const idx = (i: number) => String(i).padStart(2, "0");
 
-/** The landing page, in the design system's order: hero, [00] services, [01] method, [02] contact. */
 export function Landing({ content: c }: { content: Content }) {
   const { hero, services, method, contact } = c;
   return (

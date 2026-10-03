@@ -15,7 +15,6 @@ function shapes(list: Shape[], className: string, prefix: string) {
   return list.map(([tag, attrs], i) => createElement(tag, { key: prefix + i, className, ...attrs }));
 }
 
-/** The offby1 logo as inline SVG. Ink follows `color`; the "1" and the offset square use `--signal`. */
 export function Logo({ variant = "lockup", height = 28, title = "offby1", className }: LogoProps) {
   const a11y = title ? { role: "img", "aria-label": title } : { "aria-hidden": true };
   if (variant === "mark") {

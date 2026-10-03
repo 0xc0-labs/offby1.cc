@@ -13,7 +13,6 @@ export interface FooterProps {
   className?: string;
 }
 
-/** Site footer: brand, link columns, legal row. */
 export function Footer({ tagline, columns, legal, year, className }: FooterProps) {
   return (
     <footer className={cx(styles.foot, className)}>

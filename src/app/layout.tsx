@@ -11,13 +11,8 @@ import "./globals.css";
 
 export { viewport } from "./metadata";
 
-/**
- * The one root layout, for both languages: moving between / and /en/ is a
- * client-side navigation, not a full page load. The language comes from the
- * path (x-lang, set by src/proxy.ts) on the first render, and LangSync keeps
- * <html lang> right as the visitor navigates. Rendered per request: the
- * Content-Security-Policy's nonce is fresh each time.
- */
+// One root layout for both languages, so / <-> /en/ is a client-side
+// navigation. Rendered per request for the CSP nonce.
 export default async function RootLayout({ children }: { children: ReactNode }) {
   await connection();
   const h = await headers();
@@ -35,8 +30,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         {children}
         <ThemeSync />
         <LangSync />
-        {/* OpenObserve's RUM client token, from Vault through the cluster
-            (gitops, apps/offby1-cc): public by design, read per request. */}
+        {/* Public by design; from Vault through gitops (apps/offby1-cc). */}
         <Rum clientToken={process.env.OPENOBSERVE_RUM_CLIENT_TOKEN} />
       </body>
     </html>

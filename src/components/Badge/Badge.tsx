@@ -10,7 +10,6 @@ export interface BadgeProps {
   children?: ReactNode;
 }
 
-/** One or two words of status, mono uppercase. */
 export function Badge({ tone = "neutral", icon, className, children }: BadgeProps) {
   return (
     <span className={cx(styles.badge, styles[tone], className)}>

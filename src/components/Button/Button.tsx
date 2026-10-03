@@ -16,7 +16,7 @@ type AsLink = Common & { href: string } & Omit<AnchorHTMLAttributes<HTMLAnchorEl
 type AsButton = Common & { href?: undefined } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof Common>;
 export type ButtonProps = AsLink | AsButton;
 
-/** One primary per view. `href` renders an anchor. */
+/** One primary per view. */
 export function Button(props: ButtonProps) {
   const { variant = "primary", size = "md", icon, iconLeft, className, children, ...rest } = props;
   const cls = cx(styles.btn, styles[variant], styles[size], className);

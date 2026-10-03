@@ -22,7 +22,6 @@ function subscribe(onChange: () => void) {
   };
 }
 
-/** System, light or dark; system is the default. Same look as LangSwitch. */
 export function ThemeSwitch({ copy, className }: { copy: Content["nav"]["theme"]; className?: string }) {
   // The server renders "system"; the browser reads what the inline script set.
   const theme = useSyncExternalStore(subscribe, readTheme, () => "system" as Theme);

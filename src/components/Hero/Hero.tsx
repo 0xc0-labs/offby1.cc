@@ -22,7 +22,6 @@ export interface HeroProps {
   className?: string;
 }
 
-/** First screen: eyebrow, display-xl title, lede, two actions, aside panel, on the dot grid with one square off by one. */
 export function Hero({ eyebrow, title, lede, primary, secondary, note, aside, id = "hero-title", className }: HeroProps) {
   return (
     <section className={cx(styles.hero, !aside && styles.solo, className)} aria-labelledby={id}>
