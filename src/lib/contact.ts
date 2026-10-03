@@ -1,5 +1,4 @@
-// The contact form's rules, shared by the browser (ContactForm) and the server
-// (app/api/contact/route.ts): the server never trusts the browser's check.
+// Shared by the browser and the server: the server never trusts the browser's check.
 
 export const LIMITS = { name: 120, email: 254, company: 120, need: 80, message: 4000 } as const;
 
@@ -19,7 +18,6 @@ export interface ContactData {
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-/** Normalises whatever arrived into a ContactData, trimming every string. */
 export function parseContact(input: unknown): ContactData {
   const o = (typeof input === "object" && input !== null ? input : {}) as Record<string, unknown>;
   const str = (k: string) => (typeof o[k] === "string" ? (o[k] as string).trim() : "");

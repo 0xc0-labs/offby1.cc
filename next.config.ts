@@ -1,12 +1,8 @@
 import type { NextConfig } from "next";
 
-// Only the Content-Security-Policy comes from the app, because its nonce is
-// per request (src/proxy.ts). The other security headers are Traefik's, in
-// gitops: the baseline on every entrypoint (HSTS, nosniff, Referrer-Policy:
-// platform/traefik/security-headers.yaml) and this site's own on its route
-// (framing, Permissions-Policy, COOP/CORP: apps/offby1-cc/httproute.yaml).
+// No headers here: the CSP needs a per-request nonce (src/proxy.ts), and the
+// rest are Traefik's, in gitops (README.md, Security headers).
 const nextConfig: NextConfig = {
-  // A self-contained Node server, for the container image (Dockerfile).
   output: "standalone",
   poweredByHeader: false,
   trailingSlash: true,

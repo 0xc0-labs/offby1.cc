@@ -17,7 +17,6 @@ export interface IconProps {
   className?: string;
 }
 
-/** 24px Lucide line icon, stroke 1.5, inherits `color`. */
 export function Icon({ name, size = 20, strokeWidth = 1.5, label, className }: IconProps) {
   const nodes = ALL[name];
   const a11y = label ? { role: "img", "aria-label": label } : { "aria-hidden": true, focusable: false };

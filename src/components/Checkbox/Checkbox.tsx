@@ -8,7 +8,7 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
   error?: string;
 }
 
-/** Square checkbox with label; never pre-checked for consent. */
+/** Never pre-checked: it collects consent. */
 export function Checkbox({ label, error, className, id: givenId, ...rest }: CheckboxProps) {
   const autoId = useId();
   const id = givenId ?? autoId;

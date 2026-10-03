@@ -21,11 +21,6 @@ export interface TerminalProps {
   className?: string;
 }
 
-/**
- * Mono console panel; line numbers start at 00. The lines come in one after
- * another, as a run would print them, and the block cursor blinks on the
- * last; both stop under prefers-reduced-motion.
- */
 export function Terminal({ lines, title = "audit.log", status, lang = "es", cursor = true, label, className }: TerminalProps) {
   return (
     <figure className={cx(styles.term, className)} aria-label={label ?? title}>

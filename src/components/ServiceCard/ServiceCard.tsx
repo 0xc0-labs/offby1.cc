@@ -14,7 +14,6 @@ export interface ServiceCardProps {
   className?: string;
 }
 
-/** Service card for the landing's services grid. With `href` the whole card is a link. */
 export function ServiceCard({ icon, index, title, description, items, href, linkLabel, className }: ServiceCardProps) {
   const body = (
     <>

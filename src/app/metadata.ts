@@ -8,7 +8,6 @@ export const SITE = "https://offby1.cc";
 
 const CONTENT = { es, en };
 
-/** A page's metadata: canonical, the other language as alternate, Open Graph. */
 export function pageMetadata(lang: Lang, page?: PageKey): Metadata {
   const c = CONTENT[lang];
   const p = paths(page);

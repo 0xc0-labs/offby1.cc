@@ -1,6 +1,4 @@
-# Lint, type-check and build on every PR; build the image too, and on main
-# push it to GHCR (sha-<7> and main). Trunk-based: every commit on main is a
-# deployable image. The steps live in 0xc0-labs/.github.
+# Trunk-based: every commit on main is a deployable image.
 name: ci
 
 on:

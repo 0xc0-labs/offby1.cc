@@ -11,7 +11,6 @@ h1, h2, h3, p { overflow-wrap: break-word; }
 a { color: var(--link); }
 ::selection { background: var(--signal-soft); color: var(--ink); }
 
-/* One focus ring for every control: 2px of the page colour, 2px of focus. */
 :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
   outline: 2px solid transparent; outline-offset: 2px; box-shadow: var(--focus-ring);
 }

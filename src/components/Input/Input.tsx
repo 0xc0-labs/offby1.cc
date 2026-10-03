@@ -20,7 +20,6 @@ type AsSelect = Field & {
 } & Omit<SelectHTMLAttributes<HTMLSelectElement>, keyof Field>;
 export type InputProps = AsInput | AsTextarea | AsSelect;
 
-/** Labelled form control: text input, textarea or select, with hint and error. */
 export function Input({ label, hint, error, optional, className, ...props }: InputProps) {
   const autoId = useId();
   const id = props.id ?? autoId;

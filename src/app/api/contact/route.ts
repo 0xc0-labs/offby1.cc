@@ -1,15 +1,10 @@
 import { NextResponse } from "next/server";
 import { parseContact, validateContact } from "@/lib/contact";
 
-// Larger bodies are refused before parsing: the form's own limits add up to
-// well under this.
+// Refused before parsing; the form's own limits add up to well under this.
 const MAX_BODY = 16 * 1024;
 
-/**
- * The contact form's endpoint. It validates again what the browser checked
- * and answers 202. There is no delivery (mail, CRM): the request is logged
- * without its message or contact details.
- */
+/** There is no delivery (mail, CRM): the log never carries the message or contact details. */
 export async function POST(request: Request) {
   if (!request.headers.get("content-type")?.startsWith("application/json")) {
     return NextResponse.json({ error: "unsupported media type" }, { status: 415 });

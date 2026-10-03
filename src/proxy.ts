@@ -1,12 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-// The Content-Security-Policy, with a fresh nonce per request: Next.js reads
-// it from the request header and puts it on its inline scripts, so pages are
-// rendered per request (connection() in each root layout). Scripts run only
-// with that nonce or from this origin: Next.js's chunks under /_next/, and
-// Cloudflare's under /cdn-cgi/, such as Email Obfuscation's decoder
-// (operator decision, 2026-10-03; #9). No 'strict-dynamic': it would make
-// browsers ignore 'self' and block Cloudflare's scripts.
+// 'self' admits Cloudflare's /cdn-cgi/ scripts, such as Email Obfuscation's
+// decoder (operator decision, 2026-10-03). No 'strict-dynamic': browsers
+// would then ignore 'self' and block them.
 export function proxy(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
   const dev = process.env.NODE_ENV === "development";

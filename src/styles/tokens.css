@@ -1,10 +1,5 @@
-/*
- * offby1 design tokens, generated from the design system's tokens.json
- * (claude.ai/artifact/KfETJAuPgCxKXv9s4sczkp). Dark is the brand theme and
- * the default; light follows the system, or the visitor's choice in the
- * ThemeSwitch (data-theme on <html>). Edit the design
- * system first, then regenerate: never a value here alone.
- */
+/* Generated from the design system's tokens.json
+ * (claude.ai/artifact/KfETJAuPgCxKXv9s4sczkp): edit it there and regenerate. */
 
 :root {
   color-scheme: dark;
@@ -97,7 +92,6 @@
   --focus-ring: 0 0 0 2px #f4f5f1, 0 0 0 4px #4a6400;
 }
 
-/* Type styles. Under 640px display-xl and display step down. */
 .display-xl { font-family: var(--font-sans); font-size: 72px; line-height: 76px; font-weight: 600; letter-spacing: -0.035em; }
 .display { font-family: var(--font-sans); font-size: 48px; line-height: 52px; font-weight: 600; letter-spacing: -0.025em; }
 .heading { font-family: var(--font-sans); font-size: 28px; line-height: 34px; font-weight: 600; letter-spacing: -0.015em; }

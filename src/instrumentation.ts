@@ -1,18 +1,14 @@
 import { registerOTel } from "@vercel/otel";
 import type { Instrumentation } from "next";
 
-// Traces to OpenObserve's collector, over OTLP HTTP. The endpoint and the
-// service name come from the environment (gitops, apps/offby1-cc):
-// OTEL_EXPORTER_OTLP_ENDPOINT and OTEL_SERVICE_NAME. Without an endpoint, as
-// in `next dev`, nothing is exported. Traefik's traceparent header makes each
-// server span a child of its span for the request.
+// Endpoint from OTEL_EXPORTER_OTLP_ENDPOINT (gitops); without one, as in
+// `next dev`, nothing is exported.
 export function register() {
   registerOTel({ serviceName: process.env.OTEL_SERVICE_NAME ?? "offby1-cc" });
 }
 
-// Next.js logs nothing in production, errors included. One JSON line per
-// server error on stderr, which the collector reads as a log at level error.
-// The digest is the one Next.js shows the visitor, so a report can be matched.
+// Next.js logs no errors in production. The digest is the one the visitor
+// sees, so a report can be matched.
 export const onRequestError: Instrumentation.onRequestError = (
   err,
   request,

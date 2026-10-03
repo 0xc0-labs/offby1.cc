@@ -15,7 +15,6 @@ export interface SectionHeaderProps {
   children?: ReactNode;
 }
 
-/** Section header: [index] eyebrow, display title, optional lede. */
 export function SectionHeader({ index, eyebrow, title, lede, as: Tag = "h2", align = "left", id, className, children }: SectionHeaderProps) {
   return (
     <header className={cx(styles.header, align === "center" && styles.center, className)}>

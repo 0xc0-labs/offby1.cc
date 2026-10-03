@@ -4,8 +4,7 @@ import type { Content, PageKey } from "@/content/types";
 import { Footer } from "../Footer/Footer";
 import { NavBar } from "../NavBar/NavBar";
 
-/** Every page's frame: the bar, the content, the footer. */
-/** `page` is the text page shown, if any; without it, the landing. */
+/** Without `page`, the landing. */
 export function Shell({ content: c, page, children }: { content: Content; page?: PageKey; children: ReactNode }) {
   const home = !page;
   const homeHref = c.lang === "en" ? "/en/" : "/";

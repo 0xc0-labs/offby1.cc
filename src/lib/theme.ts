@@ -1,15 +1,9 @@
-// The visitor's theme: "system" (the default, prefers-color-scheme decides)
-// or their own choice, kept in localStorage and set as data-theme on <html>.
-
 export type Theme = "system" | "light" | "dark";
 
 export const THEME_KEY = "offby1-theme";
 export const THEME_EVENT = "offby1-theme";
 
-/**
- * Runs inline in <head>, before the first paint, so a stored choice never
- * flashes the other theme. It carries the CSP nonce (app/root.tsx).
- */
+/** Inline in <head>, before the first paint, so a stored choice never flashes the other theme. */
 export const THEME_INIT = `try{var t=localStorage.getItem("${THEME_KEY}");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`;
 
 export function readTheme(): Theme {
@@ -30,11 +24,7 @@ export function applyTheme(theme: Theme) {
   window.dispatchEvent(new Event(THEME_EVENT));
 }
 
-/**
- * Puts the stored choice back on <html>. React drops the attribute if it
- * ever rebuilds the page from the root (a failed hydration), so ThemeSync
- * calls this once it has mounted.
- */
+/** React drops data-theme if a failed hydration rebuilds the page; ThemeSync calls this on mount. */
 export function restoreTheme() {
   let stored: string | null = null;
   try {
