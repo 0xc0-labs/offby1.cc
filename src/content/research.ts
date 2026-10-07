@@ -73,7 +73,7 @@ export const researchIndex: Record<Lang, IndexCopy> = {
 export const articles: Article[] = [
   {
     id: "authorization-two-questions",
-    date: "2026-10-08",
+    date: "2026-09-12",
     readingMinutes: 9,
     es: {
       slug: "la-autorizacion-son-dos-preguntas",
@@ -220,7 +220,7 @@ export const articles: Article[] = [
   },
   {
     id: "token-signs-who-not-what",
-    date: "2026-10-08",
+    date: "2026-09-27",
     readingMinutes: 7,
     es: {
       slug: "el-token-firma-quien-no-que",
@@ -337,7 +337,7 @@ export const articles: Article[] = [
   },
   {
     id: "authorization-testing-controls",
-    date: "2026-10-08",
+    date: "2026-10-06",
     readingMinutes: 8,
     es: {
       slug: "controles-para-probar-autorizacion",
