@@ -15,6 +15,7 @@ export const en: Content = {
       { label: "Services", href: "#services" },
       { label: "Method", href: "#method" },
       { label: "Contact", href: "#contact" },
+      { label: "Research", href: "/en/research/" },
     ],
     cta: { label: "Request an audit", href: "#contact" },
     theme: { label: "Theme", system: "Match the system", light: "Light", dark: "Dark" },
@@ -135,6 +136,7 @@ export const en: Content = {
         title: "Company",
         links: [
           { label: "Method", href: "#method" },
+          { label: "Research", href: "/en/research/" },
           { label: "Contact", href: "#contact" },
         ],
       },
