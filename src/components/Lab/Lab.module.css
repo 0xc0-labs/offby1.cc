@@ -1,0 +1,34 @@
+.page { max-width: 880px; margin: 0 auto; padding: var(--space-16) var(--space-6); display: grid; gap: var(--space-4); }
+.page h1, .page h2 { margin: 0; color: var(--ink); }
+.page h2 { margin-top: var(--space-6); }
+.eyebrow { margin: 0; color: var(--ink-muted); }
+.nav { display: flex; flex-wrap: wrap; gap: var(--space-4); font-family: var(--font-mono); font-size: 14px; }
+.nav a { color: var(--ink-muted); text-decoration: none; border-bottom: 2px solid transparent; }
+.nav a:hover { color: var(--ink); }
+.nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--signal); }
+.list { margin: 0; padding-left: var(--space-6); color: var(--ink-muted); display: grid; gap: var(--space-2); }
+.sample {
+  margin: 0; padding: var(--space-4); background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 14px; color: var(--ink);
+}
+.para { margin: 0; color: var(--ink-muted); max-width: var(--measure); }
+.probe {
+  margin-top: var(--space-8); padding: var(--space-6); background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius-md); display: grid; gap: var(--space-4);
+}
+.probeHead { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); }
+.probeHead h2 { margin: 0; }
+.recheck {
+  font: inherit; font-size: 14px; color: var(--ink); background: none; border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md); padding: var(--space-1) var(--space-3); cursor: pointer;
+}
+.recheck:hover { background: var(--surface-2); }
+.table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.table th { text-align: left; font-weight: 400; color: var(--ink-muted); padding: var(--space-2) 0; border-bottom: 1px solid var(--line); }
+.table td { text-align: right; font-family: var(--font-mono); color: var(--ink); padding: var(--space-2) 0; border-bottom: 1px solid var(--line); }
+.log {
+  margin: 0; padding: var(--space-3); background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-md);
+  font-family: var(--font-mono); font-size: 12px; line-height: 18px; color: var(--ink-muted); white-space: pre-wrap; word-break: break-word;
+}
+.meta { margin: 0; font-size: 13px; color: var(--ink-muted); word-break: break-word; }
+.meta a { color: var(--link); }
