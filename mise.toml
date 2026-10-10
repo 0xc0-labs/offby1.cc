@@ -2,3 +2,8 @@
 [tools]
 node = "24.21.0"
 pnpm = "12.8.1"
+
+[settings]
+# Installs only what mise.lock records, every download checked against its
+# checksum, for this machine's platform. After any change above, `mise lock`.
+locked = true
