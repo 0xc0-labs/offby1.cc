@@ -2,6 +2,11 @@
 [tools]
 node = "24.21.0"
 pnpm = "12.8.1"
+# For Claude Code's typescript-lsp plugin, which starts the language server.
+# It checks against the project's own typescript (node_modules); this one
+# only serves before pnpm install.
+"npm:typescript-language-server" = "6.0.1"
+"npm:typescript" = "6.0.3"
 
 [settings]
 # Installs only what mise.lock records, every download checked against its

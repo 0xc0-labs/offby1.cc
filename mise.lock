@@ -15,6 +15,18 @@ url = "https://nodejs.org/dist/v24.21.0/node-v24.21.0-linux-x64.tar.gz"
 checksum = "sha256:bed7eea5325e1108f32ce5228ddd6a5f0f08a499ee42aa7442aea583702f6057"
 url = "https://nodejs.org/dist/v24.21.0/node-v24.21.0-darwin-arm64.tar.gz"
 
+[[tools."npm:typescript"]]
+version = "6.0.3"
+aube = { path = ".mise/locks/npm-typescript/6.0.3", digest = "sha256:bfd4f60761264c1fe455bfca4cc3841cabe82be4d3aa7c85d578f29f6a674804" }
+backend = "npm:typescript"
+specifiers = ["6.0.3"]
+
+[[tools."npm:typescript-language-server"]]
+version = "6.0.1"
+aube = { path = ".mise/locks/npm-typescript-language-server/6.0.1", digest = "sha256:cd5db34273d07076d582ba959987cbd36e89c20d479a4671433aca4f6bdc3c7e" }
+backend = "npm:typescript-language-server"
+specifiers = ["6.0.1"]
+
 [[tools.pnpm]]
 version = "12.8.1"
 backend = "aqua:pnpm/pnpm"
