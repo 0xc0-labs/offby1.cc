@@ -4,7 +4,15 @@ import type { Instrumentation } from "next";
 // Endpoint from OTEL_EXPORTER_OTLP_ENDPOINT (gitops); without one, as in
 // `next dev`, nothing is exported.
 export function register() {
-  registerOTel({ serviceName: process.env.OTEL_SERVICE_NAME ?? "offby1-cc" });
+  registerOTel({
+    attributes: {
+      // @vercel/otel's defaults assume Vercel: these two would be wrong here,
+      // and an undefined value drops them.
+      "cloud.provider": undefined,
+      "vercel.runtime": undefined,
+    },
+    serviceName: process.env.OTEL_SERVICE_NAME ?? "offby1-cc",
+  });
 }
 
 // Next.js logs no errors in production. The digest is the one the visitor
