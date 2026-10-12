@@ -8,7 +8,9 @@ WORKDIR /app
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 RUN corepack enable
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-RUN pnpm install --frozen-lockfile
+# The registry token is a build secret, never a layer (.github README, "Shared packages").
+RUN --mount=type=secret,id=npmrc \
+    NPM_CONFIG_USERCONFIG=/run/secrets/npmrc pnpm install --frozen-lockfile
 
 FROM ${NODE_IMAGE} AS build
 WORKDIR /app

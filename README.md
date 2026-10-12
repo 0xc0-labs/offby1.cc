@@ -78,13 +78,14 @@ contact's details.
 
 ## Observability
 
-Everything goes to OpenObserve. Server spans are exported over OTLP HTTP
-(`src/instrumentation.ts`, endpoint and service name from
-`OTEL_EXPORTER_OTLP_ENDPOINT` and `OTEL_SERVICE_NAME`), as children of
-Traefik's span for the request. The kubelet's probes make no trace, and
-`src/lib/kubeProbe.ts` says when and why; they must hit a path the proxy
-does not run on, as `/healthz/`. Server errors are one JSON line each on
-stderr, with the digest the visitor sees. The browser sends RUM (page loads,
+Everything goes to OpenObserve. The OpenTelemetry setup and the log line come
+from `@0xc0-labs/observability` (`src/instrumentation.ts`; its README holds
+the configuration, the log fields and the probes). Server spans are exported
+over OTLP HTTP, as children of Traefik's span for the request. The kubelet's
+probes make no trace, and must hit a path the proxy does not run on, as
+`/healthz/`. Logs are one JSON line each on stdout, carrying the trace's ids:
+server errors, with the digest the visitor sees, and the contact form's
+`contact.received`. The browser sends RUM (page loads,
 Core Web Vitals, errors, resources, clicks) through this same origin
 (`components/Rum/Rum.tsx`), with no storage on the visitor's side and no
 session replay; it stays off without `OPENOBSERVE_RUM_CLIENT_TOKEN`, as in

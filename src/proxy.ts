@@ -33,7 +33,7 @@ export function proxy(request: NextRequest) {
 }
 
 // `healthz` stays out: on a path the proxy runs on, the probes would be
-// traced (src/lib/kubeProbe.ts).
+// traced (@0xc0-labs/observability's README).
 export const config = {
   matcher: [
     {
