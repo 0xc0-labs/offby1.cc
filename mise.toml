@@ -2,6 +2,10 @@
 [tools]
 node = "24.21.0"
 pnpm = "12.8.1"
+# .github's semgrep workflow installs these three by name.
+python = "3.12.14"
+uv = "0.12.17"
+"pipx:semgrep" = "1.180.0"
 # .github's release workflow installs these two by name: git-cliff computes
 # the version from cliff.toml, crane tags the image's digest in GHCR.
 git-cliff = "2.14.2"
