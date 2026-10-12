@@ -20,6 +20,14 @@ jobs:
     uses: 0xc0-labs/.github/.github/workflows/node-check.yml@main
     with:
       test: true
+      coverage: true
+  coverage:
+    needs: check
+    if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
+      pull-requests: write
+    uses: 0xc0-labs/.github/.github/workflows/coverage-comment.yml@main
   image:
     needs: check
     permissions:
