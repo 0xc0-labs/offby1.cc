@@ -21,7 +21,7 @@ export interface LangSwitchProps {
 }
 
 /** A click is remembered (lib/lang.ts) and outranks the device's language. */
-export function LangSwitch({ value, hrefs, label = "Idioma / Language", className }: LangSwitchProps) {
+export function LangSwitch({ value, hrefs, label = "Idioma / Language", className }: Readonly<LangSwitchProps>) {
   return (
     <div className={cx(styles.lang, "label", className)} role="group" aria-label={label}>
       {OPTIONS.map((o, i) => (
@@ -35,7 +35,7 @@ export function LangSwitch({ value, hrefs, label = "Idioma / Language", classNam
           <Link
             href={hrefs[o.value]}
             scroll={false}
-            onClick={() => storeLang(o.value)}
+            onClick={() => { storeLang(o.value); }}
             hrefLang={o.value}
             lang={o.value}
             title={o.name}

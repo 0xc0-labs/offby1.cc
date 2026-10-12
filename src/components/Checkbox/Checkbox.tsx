@@ -9,7 +9,7 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
 }
 
 /** Never pre-checked: it collects consent. */
-export function Checkbox({ label, error, className, id: givenId, ...rest }: CheckboxProps) {
+export function Checkbox({ label, error, className, id: givenId, ...rest }: Readonly<CheckboxProps>) {
   const autoId = useId();
   const id = givenId ?? autoId;
   return (

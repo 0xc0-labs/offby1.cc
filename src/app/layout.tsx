@@ -13,7 +13,7 @@ export { viewport } from "./metadata";
 
 // One root layout for both languages, so / <-> /en/ is a client-side
 // navigation. Rendered per request for the CSP nonce.
-export default async function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   await connection();
   const h = await headers();
   const lang = h.get("x-lang") === "en" ? "en" : "es";

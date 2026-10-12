@@ -16,11 +16,12 @@ export interface ContactData {
   website: string;
 }
 
+// eslint-disable-next-line sonarjs/super-linear-regex -- only ever runs on a value already capped by LIMITS.email (254)
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function parseContact(input: unknown): ContactData {
   const o = (typeof input === "object" && input !== null ? input : {}) as Record<string, unknown>;
-  const str = (k: string) => (typeof o[k] === "string" ? (o[k] as string).trim() : "");
+  const str = (k: string) => (typeof o[k] === "string" ? (o[k]).trim() : "");
   return {
     name: str("name"),
     email: str("email"),

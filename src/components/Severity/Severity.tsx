@@ -23,7 +23,7 @@ export interface SeverityProps {
 }
 
 /** Never colour alone: the label always goes with the meter. */
-export function Severity({ level, lang = "es", compact, className, children }: SeverityProps) {
+export function Severity({ level, lang = "es", compact, className, children }: Readonly<SeverityProps>) {
   const s = SEV[level];
   const label = children ?? s[lang];
   return (

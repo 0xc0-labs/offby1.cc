@@ -10,7 +10,7 @@ import { Logo } from "../Logo/Logo";
 import { ThemeSwitch } from "../ThemeSwitch/ThemeSwitch";
 import styles from "./NavBar.module.css";
 
-export interface LinkItem {
+interface LinkItem {
   label: string;
   href: string;
   active?: boolean;
@@ -28,15 +28,17 @@ export interface NavBarProps {
   className?: string;
 }
 
-export function NavBar({ links, cta, theme, lang, langHrefs, sticky, homeHref = "/", className }: NavBarProps) {
+export function NavBar({ links, cta, theme, lang, langHrefs, sticky, homeHref = "/", className }: Readonly<NavBarProps>) {
   const [open, setOpen] = useState(false);
   const en = lang === "en";
+  const closeLabel = en ? "Close menu" : "Cerrar menú";
+  const openLabel = en ? "Open menu" : "Abrir menú";
 
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
     document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
+    return () => { document.removeEventListener("keydown", onKey); };
   }, [open]);
 
   return (
@@ -65,8 +67,8 @@ export function NavBar({ links, cta, theme, lang, langHrefs, sticky, homeHref = 
             className={styles.toggle}
             aria-expanded={open}
             aria-controls="nav-panel"
-            aria-label={open ? (en ? "Close menu" : "Cerrar menú") : en ? "Open menu" : "Abrir menú"}
-            onClick={() => setOpen(!open)}
+            aria-label={open ? closeLabel : openLabel}
+            onClick={() => { setOpen(!open); }}
           >
             <Icon name={open ? "x" : "menu"} size={22} />
           </button>
@@ -75,7 +77,7 @@ export function NavBar({ links, cta, theme, lang, langHrefs, sticky, homeHref = 
       {open ? (
         <div id="nav-panel" className={styles.panel}>
           {links.map((l) => (
-            <a key={l.href} href={l.href} className={styles.plink} onClick={() => setOpen(false)}>
+            <a key={l.href} href={l.href} className={styles.plink} onClick={() => { setOpen(false); }}>
               {l.label}
               <Icon name="arrow-right" size={18} />
             </a>
@@ -85,7 +87,7 @@ export function NavBar({ links, cta, theme, lang, langHrefs, sticky, homeHref = 
             <ThemeSwitch copy={theme} />
           </div>
           {cta ? (
-            <Button href={cta.href} size="lg" icon="arrow-right" onClick={() => setOpen(false)}>
+            <Button href={cta.href} size="lg" icon="arrow-right" onClick={() => { setOpen(false); }}>
               {cta.label}
             </Button>
           ) : null}

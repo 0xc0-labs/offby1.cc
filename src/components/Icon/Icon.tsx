@@ -17,7 +17,7 @@ export interface IconProps {
   className?: string;
 }
 
-export function Icon({ name, size = 20, strokeWidth = 1.5, label, className }: IconProps) {
+export function Icon({ name, size = 20, strokeWidth = 1.5, label, className }: Readonly<IconProps>) {
   const nodes = ALL[name];
   const a11y = label ? { role: "img", "aria-label": label } : { "aria-hidden": true, focusable: false };
   return (

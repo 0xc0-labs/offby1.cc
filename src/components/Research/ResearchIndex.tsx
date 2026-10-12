@@ -8,7 +8,7 @@ import { Shell } from "../Page/Shell";
 import styles from "./Research.module.css";
 
 /** The research index: the list of articles, newest first. */
-export function ResearchIndex({ content: c }: { content: Content }) {
+export function ResearchIndex({ content: c }: Readonly<{ content: Content }>) {
   const t = researchIndex[c.lang];
   const ordered = [...articles].sort((a, b) => b.date.localeCompare(a.date));
   return (

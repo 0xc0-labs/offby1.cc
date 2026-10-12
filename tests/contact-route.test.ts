@@ -15,7 +15,7 @@ afterEach(() => vi.restoreAllMocks());
 
 describe("POST /api/contact", () => {
   it("logs one contact.received line without the message or contact details", async () => {
-    const log = vi.spyOn(console, "log").mockImplementation(() => {});
+    const log = vi.spyOn(console, "log").mockImplementation(() => undefined);
 
     const res = await post({
       name: "Ada",
@@ -43,8 +43,8 @@ describe("POST /api/contact", () => {
   });
 
   it("logs nothing for a honeypot submission", async () => {
-    const log = vi.spyOn(console, "log").mockImplementation(() => {});
-    const res = await post({ website: "http://spam" });
+    const log = vi.spyOn(console, "log").mockImplementation(() => undefined);
+    const res = await post({ website: "https://spam" });
     expect(res.status).toBe(202);
     expect(log).not.toHaveBeenCalled();
   });

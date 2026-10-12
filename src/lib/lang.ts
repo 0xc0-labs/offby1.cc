@@ -3,7 +3,7 @@
 
 import type { Lang } from "@/content/types";
 
-export const LANG_KEY = "offby1-lang";
+const LANG_KEY = "offby1-lang";
 
 /**
  * Inline in <head>, before the first paint, on / only: English chosen, or no

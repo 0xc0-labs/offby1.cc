@@ -7,7 +7,7 @@ import { SectionHeader } from "../SectionHeader/SectionHeader";
 import { Shell } from "./Shell";
 import styles from "./TextPage.module.css";
 
-export function TextPage({ content: c, page }: { content: Content; page: PageKey }) {
+export function TextPage({ content: c, page }: Readonly<{ content: Content; page: PageKey }>) {
   const p = c.pages.list[page];
   return (
     <Shell content={c} page={page}>

@@ -21,7 +21,7 @@ export interface TerminalProps {
   className?: string;
 }
 
-export function Terminal({ lines, title = "audit.log", status, lang = "es", cursor = true, label, className }: TerminalProps) {
+export function Terminal({ lines, title = "audit.log", status, lang = "es", cursor = true, label, className }: Readonly<TerminalProps>) {
   return (
     <figure className={cx(styles.term, className)} aria-label={label ?? title}>
       <figcaption className={cx(styles.bar, "label")}>

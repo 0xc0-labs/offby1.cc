@@ -30,13 +30,13 @@ export function Button(props: ButtonProps) {
   );
   if (rest.href !== undefined) {
     return (
-      <a className={cls} {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
+      <a className={cls} {...rest}>
         {kids}
       </a>
     );
   }
   return (
-    <button type="button" className={cls} {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
+    <button type="button" className={cls} {...rest}>
       {kids}
     </button>
   );

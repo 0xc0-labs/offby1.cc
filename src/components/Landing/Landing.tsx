@@ -12,7 +12,7 @@ import styles from "./Landing.module.css";
 
 const idx = (i: number) => String(i).padStart(2, "0");
 
-export function Landing({ content: c }: { content: Content }) {
+export function Landing({ content: c }: Readonly<{ content: Content }>) {
   const { hero, services, method, contact } = c;
   return (
     <Shell content={c}>

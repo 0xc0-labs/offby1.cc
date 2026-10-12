@@ -22,7 +22,7 @@ export interface HeroProps {
   className?: string;
 }
 
-export function Hero({ eyebrow, title, lede, primary, secondary, note, aside, id = "hero-title", className }: HeroProps) {
+export function Hero({ eyebrow, title, lede, primary, secondary, note, aside, id = "hero-title", className }: Readonly<HeroProps>) {
   return (
     <section className={cx(styles.hero, !aside && styles.solo, className)} aria-labelledby={id}>
       <div className={styles.grid} aria-hidden="true">

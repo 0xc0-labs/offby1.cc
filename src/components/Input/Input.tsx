@@ -20,16 +20,13 @@ type AsSelect = Field & {
 } & Omit<SelectHTMLAttributes<HTMLSelectElement>, keyof Field>;
 export type InputProps = AsInput | AsTextarea | AsSelect;
 
-export function Input({ label, hint, error, optional, className, ...props }: InputProps) {
-  const autoId = useId();
-  const id = props.id ?? autoId;
-  const described = [hint && !error ? `${id}-hint` : null, error ? `${id}-err` : null].filter(Boolean).join(" ") || undefined;
-  const aria = { id, "aria-invalid": error ? true : undefined, "aria-describedby": described };
+type Controls = Omit<AsInput, keyof Field> | Omit<AsTextarea, keyof Field> | Omit<AsSelect, keyof Field>;
+interface Aria { id: string; "aria-invalid": boolean | undefined; "aria-describedby": string | undefined }
 
-  let control;
+function renderControl(props: Controls, aria: Aria) {
   if (props.as === "select") {
-    const { as: _as, options, placeholderOption, ...rest } = props; // eslint-disable-line @typescript-eslint/no-unused-vars
-    control = (
+    const { as: _as, options, placeholderOption, ...rest } = props; // eslint-disable-line @typescript-eslint/no-unused-vars, sonarjs/no-unused-vars -- `as` selects the branch and must not reach the DOM element
+    return (
       <div className={styles.selectWrap}>
         <select {...rest} {...aria} className={cx(styles.control, styles.select)}>
           {placeholderOption ? <option value="">{placeholderOption}</option> : null}
@@ -48,12 +45,21 @@ export function Input({ label, hint, error, optional, className, ...props }: Inp
       </div>
     );
   } else if (props.as === "textarea") {
-    const { as: _as, rows = 5, ...rest } = props; // eslint-disable-line @typescript-eslint/no-unused-vars
-    control = <textarea rows={rows} {...rest} {...aria} className={cx(styles.control, styles.textarea)} />;
+    const { as: _as, rows = 5, ...rest } = props; // eslint-disable-line @typescript-eslint/no-unused-vars, sonarjs/no-unused-vars -- `as` selects the branch and must not reach the DOM element
+    return <textarea rows={rows} {...rest} {...aria} className={cx(styles.control, styles.textarea)} />;
   } else {
-    const { as: _as, type = "text", ...rest } = props; // eslint-disable-line @typescript-eslint/no-unused-vars
-    control = <input type={type} {...rest} {...aria} className={cx(styles.control, styles.input)} />;
+    const { as: _as, type = "text", ...rest } = props; // eslint-disable-line @typescript-eslint/no-unused-vars, sonarjs/no-unused-vars -- `as` selects the branch and must not reach the DOM element
+    return <input type={type} {...rest} {...aria} className={cx(styles.control, styles.input)} />;
   }
+}
+
+export function Input({ label, hint, error, optional, className, ...props }: InputProps) {
+  const autoId = useId();
+  const id = props.id ?? autoId;
+  const described = [hint && !error ? `${id}-hint` : null, error ? `${id}-err` : null].filter(Boolean).join(" ") || undefined;
+  const aria = { id, "aria-invalid": error ? true : undefined, "aria-describedby": described };
+
+  const control = renderControl(props, aria);
 
   return (
     <div className={cx(styles.field, error && styles.invalid, className)}>

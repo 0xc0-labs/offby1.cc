@@ -1,0 +1,5 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema-jsonc.json",
+  // Part of the design system's component set, not used by a page yet.
+  "ignore": ["src/components/Badge/Badge.tsx"]
+}

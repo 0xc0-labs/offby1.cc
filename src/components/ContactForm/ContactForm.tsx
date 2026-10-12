@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, type SubmitEvent } from "react";
 import { cx } from "@/lib/cx";
 import { parseContact, validateContact, LIMITS, type ContactError, type ContactField } from "@/lib/contact";
 import type { Content } from "@/content/types";
@@ -18,11 +18,11 @@ export interface ContactFormProps {
 
 type State = "idle" | "sending" | "sent" | "failed";
 
-export function ContactForm({ copy: t, lang, className }: ContactFormProps) {
+export function ContactForm({ copy: t, lang, className }: Readonly<ContactFormProps>) {
   const [errors, setErrors] = useState<Partial<Record<ContactField, ContactError>>>({});
   const [state, setState] = useState<State>("idle");
 
-  async function submit(e: FormEvent<HTMLFormElement>) {
+  async function submit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = parseContact(Object.fromEntries(new FormData(form)));
@@ -40,7 +40,7 @@ export function ContactForm({ copy: t, lang, className }: ContactFormProps) {
         body: JSON.stringify({ ...data, lang }),
       });
       if (res.status === 400) {
-        setErrors(((await res.json()) as { errors: typeof found }).errors ?? {});
+        setErrors(((await res.json()) as { errors?: typeof found }).errors ?? {});
         setState("idle");
         return;
       }
@@ -63,7 +63,7 @@ export function ContactForm({ copy: t, lang, className }: ContactFormProps) {
   const [before, policy, after] = t.consent;
 
   return (
-    <form className={cx(styles.form, className)} noValidate onSubmit={submit}>
+    <form className={cx(styles.form, className)} noValidate onSubmit={(e) => { void submit(e); }}>
       <div className={styles.row}>
         <Input name="name" label={t.name} autoComplete="name" maxLength={LIMITS.name} error={err("name")} required />
         <Input

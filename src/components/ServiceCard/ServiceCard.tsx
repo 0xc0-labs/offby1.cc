@@ -14,7 +14,7 @@ export interface ServiceCardProps {
   className?: string;
 }
 
-export function ServiceCard({ icon, index, title, description, items, href, linkLabel, className }: ServiceCardProps) {
+export function ServiceCard({ icon, index, title, description, items, href, linkLabel, className }: Readonly<ServiceCardProps>) {
   const body = (
     <>
       <div className={styles.top}>

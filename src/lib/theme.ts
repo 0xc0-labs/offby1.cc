@@ -1,6 +1,6 @@
 export type Theme = "system" | "light" | "dark";
 
-export const THEME_KEY = "offby1-theme";
+const THEME_KEY = "offby1-theme";
 export const THEME_EVENT = "offby1-theme";
 
 /** Inline in <head>, before the first paint, so a stored choice never flashes the other theme. */
