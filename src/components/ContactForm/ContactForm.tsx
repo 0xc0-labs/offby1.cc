@@ -84,6 +84,7 @@ export function ContactForm({ copy: t, lang, className }: Readonly<ContactFormPr
       <Input name="message" as="textarea" label={t.message} hint={t.messageHint} optional={t.optional} maxLength={LIMITS.message} error={err("message")} />
       {/* Honeypot: off-screen and out of the tab order; people never fill it. */}
       <div className={styles.trap} aria-hidden="true">
+        {/* nosemgrep: jsx-not-internationalized - the honeypot's label is hidden from people, only bots read it */}
         <label>
           Website
           <input name="website" type="text" tabIndex={-1} autoComplete="off" />

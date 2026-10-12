@@ -31,7 +31,7 @@ export function Icon({ name, size = 20, strokeWidth = 1.5, label, className }: R
       strokeWidth={strokeWidth}
       strokeLinecap="round"
       strokeLinejoin="round"
-      {...a11y}
+      {...a11y} // nosemgrep: react-props-spreading - a11y is the role and aria attributes built above
     >
       {nodes.map(([tag, attrs], i) => createElement(tag, { key: i, ...attrs }))}
     </svg>

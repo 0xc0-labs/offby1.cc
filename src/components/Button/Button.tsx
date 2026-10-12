@@ -30,12 +30,14 @@ export function Button(props: ButtonProps) {
   );
   if (rest.href !== undefined) {
     return (
+      // nosemgrep: react-props-spreading - rest is typed as the anchor's own props, no DOM-only keys reach it
       <a className={cls} {...rest}>
         {kids}
       </a>
     );
   }
   return (
+    // nosemgrep: react-props-spreading - rest is typed as the button's own props, no DOM-only keys reach it
     <button type="button" className={cls} {...rest}>
       {kids}
     </button>
