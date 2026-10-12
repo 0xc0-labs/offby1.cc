@@ -66,7 +66,7 @@ React doesn't hydrate them (`components/Email/RichText.tsx`). The other
 headers are Traefik's, in gitops: the baseline on every entrypoint (HSTS,
 nosniff, Referrer-Policy: `platform/traefik/security-headers.yaml`) and this
 site's own on its route (framing, Permissions-Policy, COOP/CORP:
-`apps/offby1-cc/httproute.yaml`).
+`apps/offby1-cc/prod/httproute.yaml`).
 
 ## Contact form
 
@@ -94,4 +94,5 @@ Trunk-based: `main` is the trunk, every change is a short-lived
 steps in `0xc0-labs/.github`) lints, type-checks and builds every PR, and
 builds the image. Every push to `main` publishes
 `ghcr.io/0xc0-labs/offby1.cc` as `sha-<7>` and `main`; the job summary
-prints the `tag@digest` that gitops pins in `apps/offby1-cc/deployment.yaml`.
+prints the `tag@digest` that gitops pins in
+`apps/offby1-cc/prod/deployment.yaml`.
