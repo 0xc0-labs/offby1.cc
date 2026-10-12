@@ -99,3 +99,18 @@ and builds the image. Every push to `main` publishes
 `ghcr.io/0xc0-labs/offby1.cc` as `sha-<7>` and `main`; the job summary
 prints the `tag@digest` that gitops pins in
 `apps/offby1-cc/prod/deployment.yaml`.
+
+### Releases
+
+There is no staging: every push to `main` is a release. After the image, the
+`release` job calls `0xc0-labs/.github`'s `release.yml` (README, Application
+repos). It computes the version from the Conventional Commits since the last
+`vX.Y.Z` (git-cliff, `cliff.toml`: a `feat` bumps the minor, a `fix` the
+patch, a `!` the minor while in 0.x; the first release is `v0.1.0`), tags the
+image's digest with it, tags the commit, publishes a GitHub Release with the
+changelog, and opens prod's PR in `gitops`, which pins that digest.
+
+**Merging prod's PR deploys the release**: it is the approval, and the
+operator's. A push whose commits `git-cliff` counts none of, or that a later
+release already contains, releases nothing and says so in a notice. The job
+runs on the self-hosted runners, which reach Vault.

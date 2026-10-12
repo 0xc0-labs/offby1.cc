@@ -1,4 +1,6 @@
-# Trunk-based: every commit on main is a deployable image.
+# Trunk-based: every commit on main is a deployable image, and a release.
+# check and image take the default, GitHub's runners; release runs on the
+# self-hosted ones, its default, which reach Vault.
 name: ci
 
 on:
@@ -9,13 +11,29 @@ on:
 
 permissions:
   contents: read
-  packages: write
 
 jobs:
   check:
+    permissions:
+      contents: read
+      packages: read
     uses: 0xc0-labs/.github/.github/workflows/node-check.yml@main
     with:
       test: true
   image:
     needs: check
+    permissions:
+      contents: read
+      packages: write
     uses: 0xc0-labs/.github/.github/workflows/container-image.yml@main
+  release:
+    needs: image
+    if: github.event_name == 'push'
+    permissions:
+      contents: write
+      packages: write
+      id-token: write
+    uses: 0xc0-labs/.github/.github/workflows/release.yml@main
+    with:
+      app: offby1-cc
+      staging: false

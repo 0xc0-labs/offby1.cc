@@ -2,6 +2,10 @@
 [tools]
 node = "24.21.0"
 pnpm = "12.8.1"
+# .github's release workflow installs these two by name: git-cliff computes
+# the version from cliff.toml, crane tags the image's digest in GHCR.
+git-cliff = "2.14.2"
+crane = "0.22.1"
 # For Claude Code's typescript-lsp plugin, which starts the language server.
 # It checks against the project's own typescript (node_modules); this one
 # only serves before pnpm install.
