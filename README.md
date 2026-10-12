@@ -13,6 +13,7 @@ mise install
 pnpm install
 pnpm dev          # http://localhost:3000
 pnpm lint && pnpm typecheck && pnpm build
+pnpm test         # vitest, tests/
 pnpm start        # the standalone server, as the image runs it
 ```
 
@@ -80,7 +81,12 @@ contact's details.
 Everything goes to OpenObserve. Server spans are exported over OTLP HTTP
 (`src/instrumentation.ts`, endpoint and service name from
 `OTEL_EXPORTER_OTLP_ENDPOINT` and `OTEL_SERVICE_NAME`), as children of
-Traefik's span for the request. Server errors are one JSON line each on
+Traefik's span for the request. The kubelet's probes make no trace, nor does
+anything they run (`src/lib/kubeProbe.ts`): a request whose `User-Agent`
+starts with `kube-probe/` and that carries no `x-forwarded-for`. The kubelet
+calls the pod directly, and Traefik adds that header to every request it
+routes, so a faked User-Agent hides nothing. It holds only on a path the
+proxy does not run on, as `/healthz/`. Server errors are one JSON line each on
 stderr, with the digest the visitor sees. The browser sends RUM (page loads,
 Core Web Vitals, errors, resources, clicks) through this same origin
 (`components/Rum/Rum.tsx`), with no storage on the visitor's side and no
@@ -91,8 +97,8 @@ session replay; it stays off without `OPENOBSERVE_RUM_CLIENT_TOKEN`, as in
 
 Trunk-based: `main` is the trunk, every change is a short-lived
 `<type>/<slug>` branch and a squash-merged PR. CI (`.github/workflows/ci.yml`,
-steps in `0xc0-labs/.github`) lints, type-checks and builds every PR, and
-builds the image. Every push to `main` publishes
+steps in `0xc0-labs/.github`) lints, type-checks, builds and tests every PR,
+and builds the image. Every push to `main` publishes
 `ghcr.io/0xc0-labs/offby1.cc` as `sha-<7>` and `main`; the job summary
 prints the `tag@digest` that gitops pins in
 `apps/offby1-cc/prod/deployment.yaml`.
