@@ -5,6 +5,7 @@
   "env": { "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet" },
   "enabledPlugins": {
     "0xc0@0xc0-labs": true,
+    "software-architecture@0xc0-labs": true,
     "typescript-lsp@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true
   },
