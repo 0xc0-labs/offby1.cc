@@ -1,3 +1,4 @@
+import { writeLog } from "@0xc0-labs/observability/logging";
 import { NextResponse } from "next/server";
 import { parseContact, validateContact } from "@/lib/contact";
 
@@ -27,13 +28,16 @@ export async function POST(request: Request) {
   const errors = validateContact(data);
   if (Object.keys(errors).length) return NextResponse.json({ errors }, { status: 400 });
 
-  console.info(
-    JSON.stringify({
-      event: "contact.received",
-      need: data.need || null,
-      company: Boolean(data.company),
-      message_length: data.message.length,
-    }),
-  );
+  writeLog({
+    level: "info",
+    name: "offby1-cc",
+    msg: "Contact received",
+    event_name: "contact.received",
+    attributes: {
+      "contact.need": data.need || null,
+      "contact.company": Boolean(data.company),
+      "contact.message_length": data.message.length,
+    },
+  });
   return new NextResponse(null, { status: 202 });
 }

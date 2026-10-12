@@ -2,3 +2,7 @@
 # for the platform comes as an optional dependency.
 allowBuilds:
   unrs-resolver: false
+
+# Our own packages: the release a task waits on is newer than the age gate.
+minimumReleaseAgeExclude:
+  - '@0xc0-labs/*'
