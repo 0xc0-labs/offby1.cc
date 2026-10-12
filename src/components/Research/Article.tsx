@@ -8,7 +8,7 @@ import { Shell } from "../Page/Shell";
 import styles from "./Research.module.css";
 
 /** One research article. */
-export function Article({ content: c, article }: { content: Content; article: ArticleModel }) {
+export function Article({ content: c, article }: Readonly<{ content: Content; article: ArticleModel }>) {
   const t = researchIndex[c.lang];
   const a = article[c.lang];
   return (

@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { AUTHOR, articleBySlug, researchIndex, researchPaths, type Article } from "@/content/research";
+import { AUTHOR, researchIndex, researchPaths, type Article } from "@/content/research";
 import type { Lang } from "@/content/types";
 import { SITE } from "./metadata";
-
-const other = (lang: Lang): Lang => (lang === "en" ? "es" : "en");
 
 export function researchIndexMetadata(lang: Lang): Metadata {
   const t = researchIndex[lang];
@@ -40,6 +38,3 @@ export function articleMetadata(lang: Lang, article: Article): Metadata {
     icons: { icon: "/favicon.svg" },
   };
 }
-
-/** The article for a route's slug, or undefined to 404. */
-export { articleBySlug, other };

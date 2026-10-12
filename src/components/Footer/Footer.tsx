@@ -13,7 +13,7 @@ export interface FooterProps {
   className?: string;
 }
 
-export function Footer({ tagline, columns, legal, year, className }: FooterProps) {
+export function Footer({ tagline, columns, legal, year, className }: Readonly<FooterProps>) {
   return (
     <footer className={cx(styles.foot, className)}>
       <div className={styles.inner}>

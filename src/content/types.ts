@@ -6,13 +6,13 @@ export type Lang = "es" | "en";
 
 export type PageKey = "legal" | "privacy" | "cookies" | "disclosure";
 
-export interface Section {
+interface Section {
   heading?: string;
   paragraphs?: string[];
   items?: string[];
 }
 
-export interface TextPageContent {
+interface TextPageContent {
   path: string;
   title: string;
   /** Kept out of search engines and the sitemap: it shows the owner's address. */

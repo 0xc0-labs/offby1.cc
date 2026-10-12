@@ -26,5 +26,3 @@ export const ICONS = {
   "menu": [["path", {"d": "M4 5h16"}], ["path", {"d": "M4 12h16"}], ["path", {"d": "M4 19h16"}]] as Node[],
   "x": [["path", {"d": "M18 6 6 18"}], ["path", {"d": "m6 6 12 12"}]] as Node[],
 };
-
-export type IconName = keyof typeof ICONS;

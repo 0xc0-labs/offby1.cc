@@ -22,9 +22,9 @@ function subscribe(onChange: () => void) {
   };
 }
 
-export function ThemeSwitch({ copy, className }: { copy: Content["nav"]["theme"]; className?: string }) {
+export function ThemeSwitch({ copy, className }: Readonly<{ copy: Content["nav"]["theme"]; className?: string }>) {
   // The server renders "system"; the browser reads what the inline script set.
-  const theme = useSyncExternalStore(subscribe, readTheme, () => "system" as Theme);
+  const theme = useSyncExternalStore(subscribe, readTheme, () => "system");
   return (
     <div className={cx(styles.switch, className)} role="group" aria-label={copy.label}>
       {OPTIONS.map((o) => (
@@ -35,7 +35,7 @@ export function ThemeSwitch({ copy, className }: { copy: Content["nav"]["theme"]
           aria-pressed={theme === o.value}
           aria-label={copy[o.value]}
           title={copy[o.value]}
-          onClick={() => applyTheme(o.value)}
+          onClick={() => { applyTheme(o.value); }}
         >
           <Icon name={o.icon} size={16} />
         </button>

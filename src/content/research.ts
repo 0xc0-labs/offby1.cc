@@ -7,7 +7,7 @@ import type { Lang } from "./types";
 
 export const AUTHOR = "Sergio Atenciano";
 
-export interface ArticleSection {
+interface ArticleSection {
   heading?: string;
   paragraphs?: string[];
   items?: string[];
@@ -15,7 +15,7 @@ export interface ArticleSection {
   code?: { caption?: string; body: string };
 }
 
-export interface ArticleL10n {
+interface ArticleL10n {
   slug: string;
   title: string;
   lede: string;

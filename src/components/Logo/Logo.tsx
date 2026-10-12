@@ -12,10 +12,10 @@ export interface LogoProps {
 }
 
 function shapes(list: Shape[], className: string, prefix: string) {
-  return list.map(([tag, attrs], i) => createElement(tag, { key: prefix + i, className, ...attrs }));
+  return list.map(([tag, attrs], i) => createElement(tag, { key: `${prefix}${String(i)}`, className, ...attrs }));
 }
 
-export function Logo({ variant = "lockup", height = 28, title = "offby1", className }: LogoProps) {
+export function Logo({ variant = "lockup", height = 28, title = "offby1", className }: Readonly<LogoProps>) {
   const a11y = title ? { role: "img", "aria-label": title } : { "aria-hidden": true };
   if (variant === "mark") {
     return (

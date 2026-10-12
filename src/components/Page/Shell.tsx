@@ -6,7 +6,7 @@ import { NavBar } from "../NavBar/NavBar";
 
 /** Without `page` or `langHrefs`, the landing. `langHrefs` is for pages
  * outside the PageKey set (research), which pass their own counterpart paths. */
-export function Shell({ content: c, page, langHrefs, children }: { content: Content; page?: PageKey; langHrefs?: Record<Lang, string>; children: ReactNode }) {
+export function Shell({ content: c, page, langHrefs, children }: Readonly<{ content: Content; page?: PageKey; langHrefs?: Record<Lang, string>; children: ReactNode }>) {
   const home = !page && !langHrefs;
   const homeHref = c.lang === "en" ? "/en/" : "/";
   // Away from the landing, the section links point back at it.

@@ -10,7 +10,7 @@ export interface BadgeProps {
   children?: ReactNode;
 }
 
-export function Badge({ tone = "neutral", icon, className, children }: BadgeProps) {
+export function Badge({ tone = "neutral", icon, className, children }: Readonly<BadgeProps>) {
   return (
     <span className={cx(styles.badge, styles[tone], className)}>
       {icon ? <Icon name={icon} size={14} /> : null}
