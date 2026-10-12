@@ -1,6 +1,8 @@
 import { registerOTel } from "@vercel/otel";
 import type { Instrumentation } from "next";
 
+import { kubeProbePropagator } from "./lib/kubeProbe";
+
 // Endpoint from OTEL_EXPORTER_OTLP_ENDPOINT (gitops); without one, as in
 // `next dev`, nothing is exported.
 export function register() {
@@ -11,6 +13,8 @@ export function register() {
       "cloud.provider": undefined,
       "vercel.runtime": undefined,
     },
+    // Without 'auto', the list would replace the default W3C propagation.
+    propagators: ["auto", kubeProbePropagator],
     serviceName: process.env.OTEL_SERVICE_NAME ?? "offby1-cc",
   });
 }

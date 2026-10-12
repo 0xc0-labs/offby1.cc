@@ -10,12 +10,14 @@
     "build": "next build",
     "start": "cp -R public .next/standalone/ && cp -R .next/static .next/standalone/.next/ && node .next/standalone/server.js",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
   },
   "dependencies": {
     "@openobserve/browser-rum": "0.4.3",
     "@opentelemetry/api": "1.9.1",
     "@opentelemetry/api-logs": "0.222.0",
+    "@opentelemetry/core": "2.11.0",
     "@opentelemetry/instrumentation": "0.222.0",
     "@opentelemetry/resources": "2.11.0",
     "@opentelemetry/sdk-logs": "0.222.0",
@@ -32,6 +34,7 @@
     "@types/react-dom": "19.3.0",
     "eslint": "9.39.5",
     "eslint-config-next": "16.3.8",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "vitest": "5.0.3"
   }
 }
