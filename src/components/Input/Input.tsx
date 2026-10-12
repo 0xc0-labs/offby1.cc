@@ -28,7 +28,6 @@ function renderControl(props: Controls, aria: Aria) {
     const { as: _as, options, placeholderOption, ...rest } = props; // eslint-disable-line @typescript-eslint/no-unused-vars, sonarjs/no-unused-vars -- `as` selects the branch and must not reach the DOM element
     return (
       <div className={styles.selectWrap}>
-        {/* nosemgrep: react-props-spreading - rest is typed as the select's own props, with the discriminant removed */}
         <select {...rest} {...aria} className={cx(styles.control, styles.select)}>
           {placeholderOption ? <option value="">{placeholderOption}</option> : null}
           {options.map((o) => {
@@ -47,11 +46,9 @@ function renderControl(props: Controls, aria: Aria) {
     );
   } else if (props.as === "textarea") {
     const { as: _as, rows = 5, ...rest } = props; // eslint-disable-line @typescript-eslint/no-unused-vars, sonarjs/no-unused-vars -- `as` selects the branch and must not reach the DOM element
-    // nosemgrep: react-props-spreading - rest is typed as the textarea's own props, with the discriminant removed
     return <textarea rows={rows} {...rest} {...aria} className={cx(styles.control, styles.textarea)} />;
   } else {
     const { as: _as, type = "text", ...rest } = props; // eslint-disable-line @typescript-eslint/no-unused-vars, sonarjs/no-unused-vars -- `as` selects the branch and must not reach the DOM element
-    // nosemgrep: react-props-spreading - rest is typed as the input's own props, with the discriminant removed
     return <input type={type} {...rest} {...aria} className={cx(styles.control, styles.input)} />;
   }
 }

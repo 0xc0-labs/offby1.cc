@@ -19,7 +19,6 @@ export function Logo({ variant = "lockup", height = 28, title = "offby1", classN
   const a11y = title ? { role: "img", "aria-label": title } : { "aria-hidden": true };
   if (variant === "mark") {
     return (
-      // nosemgrep: react-props-spreading - a11y is the role and aria attributes built above
       <svg className={cx(styles.logo, className)} viewBox="0 0 40 40" height={height} width={height} {...a11y}>
         <rect className={styles.ink} x={0} y={0} width={16} height={16} />
         <rect className={styles.ink} x={20} y={0} width={16} height={16} />
@@ -30,7 +29,6 @@ export function Logo({ variant = "lockup", height = 28, title = "offby1", classN
   }
   const width = Math.round(((height * LOGO.width) / LOGO.height) * 100) / 100;
   return (
-    // nosemgrep: react-props-spreading - a11y is the role and aria attributes built above
     <svg className={cx(styles.logo, className)} viewBox={LOGO.viewBox} height={height} width={width} {...a11y}>
       {shapes(LOGO.ink, styles.ink, "i")}
       {shapes(LOGO.signal, styles.signal, "s")}

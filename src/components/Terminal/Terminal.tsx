@@ -47,7 +47,7 @@ export function Terminal({ lines, title = "audit.log", status, lang = "es", curs
               <span className={styles.text}>
                 {kind === "cmd" ? <span className={styles.prompt}>$ </span> : null}
                 {kind === "finding" && line.level ? <Severity level={line.level} lang={lang} compact /> : null}
-                {kind === "ok" ? <span className={styles.ok}>ok </span> : null /* nosemgrep: jsx-not-internationalized - a terminal status token, not prose */}
+                {kind === "ok" ? <span className={styles.ok}>ok </span> : null}
                 {line.text}
                 {cursor && i === lines.length - 1 ? <span className={styles.cursor} aria-hidden="true" /> : null}
               </span>

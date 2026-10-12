@@ -44,7 +44,6 @@ export function Landing({ content: c }: Readonly<{ content: Content }>) {
           <SectionHeader id={`${services.id}-title`} index="00" eyebrow={services.eyebrow} title={services.title} lede={services.lede} />
           <div className={styles.cards}>
             {services.cards.map((card, i) => (
-              // nosemgrep: react-props-spreading - card is the typed content object, which ServiceCard's props mirror
               <ServiceCard key={card.title} index={idx(i)} {...card} />
             ))}
           </div>

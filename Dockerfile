@@ -2,7 +2,6 @@
 
 ARG NODE_IMAGE=node:24.21.0-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
 
-# nosemgrep: missing-image-version - NODE_IMAGE defaults to a tag pinned by digest
 FROM ${NODE_IMAGE} AS deps
 WORKDIR /app
 # pnpm at the version package.json pins (packageManager), through corepack.
@@ -13,7 +12,6 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN --mount=type=secret,id=npmrc \
     NPM_CONFIG_USERCONFIG=/run/secrets/npmrc pnpm install --frozen-lockfile
 
-# nosemgrep: missing-image-version - NODE_IMAGE defaults to a tag pinned by digest
 FROM ${NODE_IMAGE} AS build
 WORKDIR /app
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0 NEXT_TELEMETRY_DISABLED=1
@@ -22,7 +20,6 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN pnpm build
 
-# nosemgrep: missing-image-version - NODE_IMAGE defaults to a tag pinned by digest
 FROM ${NODE_IMAGE} AS runner
 WORKDIR /app
 ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 PORT=3000 HOSTNAME=0.0.0.0

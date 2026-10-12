@@ -15,7 +15,7 @@ export function Checkbox({ label, error, className, id: givenId, ...rest }: Read
   return (
     <div className={cx(styles.check, error && styles.invalid, className)}>
       <input
-        {...rest} // nosemgrep: react-props-spreading - rest is typed as the input's own props
+        {...rest}
         id={id}
         type="checkbox"
         className={styles.box}
