@@ -81,12 +81,9 @@ contact's details.
 Everything goes to OpenObserve. Server spans are exported over OTLP HTTP
 (`src/instrumentation.ts`, endpoint and service name from
 `OTEL_EXPORTER_OTLP_ENDPOINT` and `OTEL_SERVICE_NAME`), as children of
-Traefik's span for the request. The kubelet's probes make no trace, nor does
-anything they run (`src/lib/kubeProbe.ts`): a request whose `User-Agent`
-starts with `kube-probe/` and that carries no `x-forwarded-for`. The kubelet
-calls the pod directly, and Traefik adds that header to every request it
-routes, so a faked User-Agent hides nothing. It holds only on a path the
-proxy does not run on, as `/healthz/`. Server errors are one JSON line each on
+Traefik's span for the request. The kubelet's probes make no trace, and
+`src/lib/kubeProbe.ts` says when and why; they must hit a path the proxy
+does not run on, as `/healthz/`. Server errors are one JSON line each on
 stderr, with the digest the visitor sees. The browser sends RUM (page loads,
 Core Web Vitals, errors, resources, clicks) through this same origin
 (`components/Rum/Rum.tsx`), with no storage on the visitor's side and no
