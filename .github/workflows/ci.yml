@@ -1,10 +1,13 @@
 # Trunk-based: every commit on main is a deployable image, and a release.
 # check and image take the default, GitHub's runners; release runs on the
 # self-hosted ones, its default, which reach Vault.
+# ready_for_review is listed because the image is built only for PRs that are
+# not drafts: marking one ready must run it (0xc0-labs/.github).
 name: ci
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
     branches: [main]
   push:
     branches: [main]
