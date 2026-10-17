@@ -14,8 +14,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@0xc0-labs/observability": "0.2.0",
-    "@openobserve/browser-rum": "0.4.3",
+    "@0xc0-labs/observability": "0.3.0",
     "@opentelemetry/api": "1.9.1",
     "next": "16.3.8",
     "react": "19.3.0",
