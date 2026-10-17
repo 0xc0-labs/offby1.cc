@@ -85,11 +85,12 @@ over OTLP HTTP, as children of Traefik's span for the request. The kubelet's
 probes make no trace, and must hit a path the proxy does not run on, as
 `/healthz/`. Logs are one JSON line each on stdout, carrying the trace's ids:
 server errors, with the digest the visitor sees, and the contact form's
-`contact.received`. The browser sends RUM (page loads,
-Core Web Vitals, errors, resources, clicks) through this same origin
-(`components/Rum/Rum.tsx`), with no storage on the visitor's side and no
-session replay; it stays off without `OPENOBSERVE_RUM_CLIENT_TOKEN`, as in
-`next dev`.
+`contact.received`. The browser sends RUM (page loads, Core Web Vitals,
+errors, resources, clicks) through this same origin (`components/Rum/Rum.tsx`,
+from `@0xc0-labs/observability/rum`; the layout passes `APP_VERSION` and
+`APP_ENVIRONMENT` at request time, so `_rumdata` carries the server's
+`version` and `env`), with no storage on the visitor's side and no session
+replay; it stays off without `OPENOBSERVE_RUM_CLIENT_TOKEN`, as in `next dev`.
 
 ## Delivery
 
