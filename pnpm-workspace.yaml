@@ -3,6 +3,9 @@
 allowBuilds:
   unrs-resolver: false
 
+# Minutes: nothing younger than three days is installed.
+minimumReleaseAge: 4320
+
 # Our own packages: the release a task waits on is newer than the age gate.
 minimumReleaseAgeExclude:
   - '@0xc0-labs/*'
