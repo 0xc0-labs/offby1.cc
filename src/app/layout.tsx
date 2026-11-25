@@ -30,9 +30,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         {children}
         <ThemeSync />
         <LangSync />
-        {/* Public by design; from Vault through gitops (apps/offby1-cc). */}
+        {/* Set to true by gitops (apps/offby1-cc); off under `next dev`. */}
         <Rum
-          clientToken={process.env.OPENOBSERVE_RUM_CLIENT_TOKEN}
+          enabled={process.env.RUM_ENABLED === "true"}
           version={process.env.APP_VERSION ?? "unknown"}
           environment={process.env.APP_ENVIRONMENT ?? "unknown"}
         />

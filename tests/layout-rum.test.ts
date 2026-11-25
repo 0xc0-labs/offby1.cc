@@ -26,14 +26,22 @@ describe("RootLayout", () => {
   it("hands the release and the environment of the server to <Rum>", async () => {
     vi.stubEnv("APP_VERSION", "v1.2.3");
     vi.stubEnv("APP_ENVIRONMENT", "prod");
-    vi.stubEnv("OPENOBSERVE_RUM_CLIENT_TOKEN", "pub-token");
+    vi.stubEnv("RUM_ENABLED", "true");
 
     const rum = find(await RootLayout({ children: null }), Rum);
 
     expect(rum?.props).toMatchObject({
-      clientToken: "pub-token",
+      enabled: true,
       version: "v1.2.3",
       environment: "prod",
     });
+  });
+
+  it.each(["", "false", "1", "TRUE"])("keeps RUM off when RUM_ENABLED is %j", async (value) => {
+    vi.stubEnv("RUM_ENABLED", value);
+
+    const rum = find(await RootLayout({ children: null }), Rum);
+
+    expect(rum?.props).toMatchObject({ enabled: false });
   });
 });
